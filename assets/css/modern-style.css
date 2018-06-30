@@ -1,0 +1,74 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+
+body {
+/*  padding-top: 54px;*/
+  padding-top: 0;
+}
+
+@media (min-width: 992px) {
+  body {
+/*    padding-top: 56px;*/
+    padding-top: 0;
+  }
+}
+
+.carousel-item {
+  height: 65vh;
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.top-menu{background-color:#333}
+.top-menu-inverse{background-color:#f7f7f7}
+.top-menu p{margin-bottom:0;padding:9px 15px}
+.top-menu-bg p{padding:9px 0}
+.top-menu-bg-inverse p{padding:9px 0}
+.top-menu a{color:#fff !important;font-size:12px !important;margin-right:10px;font-weight:400}
+.top-menu-inverse a{color:#444 !important}
+.top-menu a:hover{color:#28bcf6 !important}
+.top-menu .left i{margin-right:5px}
+.top-menu .right{float:right}
+.top-menu .right a{margin:0 0 0 15px}
+.top-menu .right a i{margin-right:5px}
+.account-setting a{margin:0 !important;padding:6px}
+.account-setting a i{margin-right:5px}
+.top-menu .container{padding:0 30px}
+.top-menu-bg a{color:#fff !important}
+.top-menu-bg-inverse a{color:#000 !important}
+.btn-top-menu{background:transparent;font-size:10px !important;font-weight:700;border:2px solid #444;margin:-3px 0 0 10px;padding:5px 0}
+.btn-top-menu:hover{border:2px solid #28bcf6}
+.btn-top-menu a{font-size:10px !important;margin:0 !important;padding:8px}
+.btn-top-menu-inverse{background:transparent;font-size:10px !important;font-weight:700;border:2px solid #ccc;margin:-3px 0 0 10px;padding:5px 0}
+.btn-top-menu-inverse:hover{border:2px solid #28bcf6;background:#28bcf6}
+.btn-top-menu-inverse a:hover{color:#fff !important}
+.btn-top-menu-inverse a{font-size:10px !important;margin:0 !important;padding:8px}
+.top-menu-bg .btn-top-menu{border:2px solid #fff}
+.top-menu-bg .btn-top-menu:hover{border:2px solid #28bcf6}
+.top-menu-bg-inverse .btn-top-menu-inverse{border:2px solid #000}
+.top-menu-bg-inverse .btn-top-menu-inverse:hover{border:2px solid #28bcf6}
+
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../img/jumbotron-bg.png);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    /*text-shadow: black 0.3em 0.3em 0.3em;*/
+}
+
+.jumbotron p{
+  padding: 10px;
+}
