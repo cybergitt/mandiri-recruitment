@@ -14,6 +14,7 @@
         'list-kategori'=>'modules/category/v_list.php',
         'list-sub-kategori'=>'modules/subcategory/v_list.php',
         'list-karir'=>'modules/career/v_list.php',
+        'list-pelamar'=>'modules/applicants/v_list.php',
         'list-pages'=>'modules/pages/v_list.php',
         'list-agenda'=>'modules/agenda/v_list.php',
         'list-pengumuman'=>'modules/pengumuman/v_list.php',

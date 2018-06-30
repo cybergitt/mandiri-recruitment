@@ -76,7 +76,8 @@ case "add":
     <div class="col-lg-9">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h5>Data Form</h5>
+                <span class="pull-left"><h5>Data Form</h5></span>
+                <span class="pull-right"><a href="javascript:history.back()" class="btn btn-default"><i class="fa fa-reply"></i> Back</a></span>
             </div>
             <div class="panel-body">
                 <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=save">
@@ -127,7 +128,8 @@ if( $database->num_rows( $query ) > 0 )
     <div class="col-lg-9">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h5>Data Form</h5>
+                <span class="pull-left"><h5>Data Form</h5></span>
+                <span class="pull-right"><a href="javascript:history.back()" class="btn btn-default"><i class="fa fa-reply"></i> Back</a></span>
             </div>
             <div class="panel-body">
                 <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update">
