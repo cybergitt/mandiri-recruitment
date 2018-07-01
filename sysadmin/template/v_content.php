@@ -16,8 +16,6 @@
         'list-karir'=>'modules/career/v_list.php',
         'list-pelamar'=>'modules/applicants/v_list.php',
         'list-pages'=>'modules/pages/v_list.php',
-        'list-agenda'=>'modules/agenda/v_list.php',
-        'list-pengumuman'=>'modules/pengumuman/v_list.php',
         'user-list'=>'modules/users/v_list.php',
         'dashboard'=>'modules/dashboard.php'
     );

@@ -29,7 +29,8 @@ switch($getact){
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="pull-right"><button class="btn btn-primary" onclick="location.href='?page=<?php echo $getpage; ?>&act=add';"><i class="fa fa-plus-circle"></i> Add New</button> </span>
+                <h5>List Data</h5>
+                <!--<span class="pull-right"><button class="btn btn-primary" onclick="location.href='?page=<?php echo $getpage; ?>&act=add';"><i class="fa fa-plus-circle"></i> Add New</button> </span>-->
             </div>
             <div class="panel-body">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -47,7 +48,7 @@ switch($getact){
                     </thead>
                     <tbody>
                         <?php
-                            $query = "SELECT p.*, k.k_title FROM pelamar_kerja AS p "
+                            $query = "SELECT p.*, r.reg_id, r.reg_status, k.k_title FROM pelamar_kerja AS p "
                                     . "INNER JOIN registrasi AS r ON r.p_email = p.p_email "
                                     . "INNER JOIN info_karir AS k ON k.k_id = p.k_id "
                                     . "ORDER BY r.reg_date DESC ";
@@ -78,8 +79,7 @@ switch($getact){
                                 }
                                 echo '<tr>';
                                     echo '<td>
-                                            <a href="?page='.$getpage.'&act=edit&key='.$row["p_email"].'"><i class="fa fa-edit"></i> Edit</a> | 
-                                            <a href="'.$act.'?page='.$getpage.'&act=delete&key='.$row["p_email"].'"><i class="fa fa-trash"></i> Delete</a>
+                                            <a href="?page='.$getpage.'&act=info&key='.$row["p_email"].'"><i class="fa fa-eye"></i> View</a>
                                         </td>';
                                     echo '<td>'.$row["reg_id"].'</td>';
                                     echo '<td>'.$row["k_title"].'</td>';
@@ -200,75 +200,103 @@ case "add":
 <?php
 break;
 
-case "edit";
+case "info";
 $key = htmlspecialchars($_GET["key"], ENT_QUOTES, 'UTF-8');
-$query = "SELECT * FROM info_karir WHERE k_id = '$key' ";
+$query = "SELECT p.*, r.reg_id, r.reg_date, r.reg_status, b.berkas_nama, b.berkas_file, "
+        . "b.berkas_status, k.k_title FROM pelamar_kerja AS p "
+        . "INNER JOIN registrasi AS r ON r.p_email = p.p_email "
+        . "LEFT JOIN berkas_docs AS b ON b.p_email = p.p_email "
+        . "INNER JOIN info_karir AS k ON p.k_id = k.k_id "
+        . "WHERE p.p_email = '$key' ";
 if( $database->num_rows( $query ) > 0 )
 {
-    list( $id, $skkid, $title, $slug, $desc, $req, $publish ) = $database->get_row( $query );
-    $p_yess = $publish == "Y" ? "selected" : "";
-    $p_no = $publish == "N" ? "selected" : "";
+    list( $pid, $pktp, $pnpwp, $pemail, $pnama, $ptempat, $ptgllhr, $pjkel, $palamat, $ptel, $pheadline, $pkid, 
+            $rregid, $rdate, $rstatus, $bnama, $bfile, $bstatus, $ktitle ) = $database->get_row( $query );
+    $tgllahir = tgl_indo($ptgllhr);
+    $tglreg = tgl_indo($rdate);
+    $gender = $pjkel == "L" ? "Laki-Laki" : "Perempuan";
 ?>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span class="pull-left"><h5>Data Form</h5></span>
+                <span class="pull-left"><h5>Detail Data</h5></span>
                 <span class="pull-right"><a href="javascript:history.back()" class="btn btn-default"><i class="fa fa-reply"></i> Back</a></span>
             </div>
             <div class="panel-body">
                 <form role="form" class="form-horizontal" method="POST" action="<?php echo $act.'?page='.$getpage;?>&act=update" enctype="multipart/form-data">
                 <input type="hidden" name="fkey" value="<?php echo $key;?>" readonly>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Category Career</label>
+                        <label class="col-sm-2 control-label">Subject Career</label>
                         <div class="col-sm-6">
-                            <select name="fcat" class="form-control" id="fcat">
-                                <?php
-                                    $query = "SELECT * FROM sub_kategori_karir ORDER BY skk_title";
-                                    $results = $database->get_results( $query );
-                                    foreach( $results as $row )
-                                    {
-                                        if($row["skk_id"] == $kid){
-                                            echo '<option value="'.$row["skk_id"].'" selected>'.$row["skk_title"].'</option>';
-                                        }else{
-                                            echo '<option value="'.$row["skk_id"].'">'.$row["skk_title"].'</option>';
-                                        }
-                                    }
-                                ?>
-                                
-                            </select>
+                            <p><?php echo $ktitle; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Title</label>
+                        <label class="col-sm-2 control-label">Headline</label>
                         <div class="col-sm-10">
-                            <input type="text" name="ftitle" class="form-control" id="ftitle" value="<?php echo $title;?>">
+                            <p><?php echo $pheadline; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Url Slug</label>
-                        <div class="col-sm-10">
-                            <input type="text" name="fslug" class="form-control" id="fslug" value="<?php echo $slug;?>">
+                        <label class="col-sm-2 control-label">No. KTP</label>
+                        <div class="col-sm-6">
+                            <p><?php echo $pktp; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description</label>
-                        <div class="col-sm-10">
-                            <textarea name="fdesc" class="form-control summernote" id="fdesc"><?php echo $desc;?></textarea>
+                        <label class="col-sm-2 control-label">No. NPWP</label>
+                        <div class="col-sm-6">
+                            <p><?php echo $pnpwp; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Requirements</label>
-                        <div class="col-sm-10">
-                            <textarea name="freq" class="form-control summernote" id="freq"><?php echo $req;?></textarea>
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-6">
+                            <p><?php echo $pemail; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Publish</label>
+                        <label class="col-sm-2 control-label">Nama Lengkap</label>
+                        <div class="col-sm-8">
+                            <p><?php echo $pnama; ?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Tempat/Tgl. Lahir</label>
+                        <div class="col-sm-6">
+                            <p><?php echo $ptempat.', '.$tgllahir; ?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Jenis Kelamin</label>
                         <div class="col-sm-2">
-                            <select name="fpublish" class="form-control" id="fpublish">
-                                <option value="Y" <?php echo $p_yess;?>>Yes</option>
-                                <option value="N" <?php echo $p_no;?>>No</option>
+                            <p><?php echo $gender; ?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <p><?php echo $palamat; ?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">No. Telepon</label>
+                        <div class="col-sm-6">
+                            <p><?php echo $ptel; ?></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Status</label>
+                        <div class="col-sm-3">
+                            <select name="fstatus" id="fstatus" class="form-control" onchange="this.form.submit()">
+                                <?php
+                                if($rstatus != 0){
+                                    echo '<option value="0">Status Pelamar</option>';
+                                    echo '<option value="3">Diterima</option>';
+                                    echo '<option value="4">Tidak Diterima</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

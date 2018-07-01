@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/laragon/www/mandiri-recruitment/template/v_header.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/template/v_footer.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/template/v_content.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/template/v_nav.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/modules/home.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/sysadmin/template/v_header.php</file>
+            <file>file:/D:/laragon/www/mandiri-recruitment/modules/karir/page_sub_career.php</file>
+        </group>
     </open-files>
 </project-private>

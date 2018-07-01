@@ -19,7 +19,7 @@
         
         echo '<div class="col-lg-4 col-sm-6">';
         echo '<div class="card h-100">';
-            echo '<a href="#">'.$pict.'</a>';
+            echo '<a href="?page=career-cat&key='.$row["kk_id"].'">'.$pict.'</a>';
             echo '<div class="card-body">';
                 echo '<h4 class="card-title">';
                     echo $row["kk_title"];

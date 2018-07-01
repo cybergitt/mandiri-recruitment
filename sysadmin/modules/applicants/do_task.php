@@ -43,31 +43,20 @@ if(!isset($isLoggedIn) || $isLoggedIn != TRUE){
     }
     // Update data
     elseif ($getpage == "list-pelamar" AND $getact == "update"){
-        $random = rand(000000,999999);
         $fkey = isset($_POST["fkey"]) ? filter_var($_POST['fkey'], FILTER_SANITIZE_STRING) : null;
-        $fcat = isset($_POST["fcat"]) ? filter_var($_POST['fcat'], FILTER_SANITIZE_NUMBER_INT) : null;
-        $ftitle = isset($_POST["ftitle"]) ? filter_var($_POST['ftitle'], FILTER_SANITIZE_STRING) : null;
-        $fslug = isset($_POST["fslug"]) ? filter_var($_POST['fslug'], FILTER_SANITIZE_STRING) : null;
-        $fdesc = isset($_POST["fdesc"]) ? $_POST['fdesc'] : null;
-        $freq = isset($_POST["freq"]) ? $_POST['freq'] : null;
-        $fpublish = isset($_POST["fpublish"]) ? filter_var($_POST['fpublish'], FILTER_SANITIZE_STRING) : null;
+        $fstatus = isset($_POST["fstatus"]) ? filter_var($_POST['fstatus'], FILTER_SANITIZE_NUMBER_INT) : null;
         
         $arrValue = array();
         
         $arrValue = array(
-            'skk_id' => $fcat,
-            'k_title' => $ftitle,
-            'k_slug' => $fslug,
-            'k_desc' => $fdesc,
-            'k_requirements' => $freq,
-            'k_publish' => $fpublish
+            'reg_status' => $fstatus
         );
         
         //Add the WHERE clauses
         $arrWhere = array(
-            'k_id' => $fkey
+            'p_email' => $fkey
         );
-        $updated = $database->update( 'info_karir', $arrValue, $arrWhere, 1 );
+        $updated = $database->update( 'registrasi', $arrValue, $arrWhere, 1 );
         if( $updated )
         {
             header('location:../../?page='.$getpage);
