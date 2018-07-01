@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2018 at 07:05 PM
+-- Generation Time: Jul 01, 2018 at 10:32 AM
 -- Server version: 5.7.19
--- PHP Version: 7.2.2
+-- PHP Version: 7.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,59 +25,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agenda`
---
-
-CREATE TABLE `agenda` (
-  `ag_id` int(11) NOT NULL,
-  `ag_tgl_posting` date NOT NULL,
-  `ag_tgl_mulai` date NOT NULL,
-  `ag_tgl_selesai` date NOT NULL,
-  `ag_jam` varchar(50) NOT NULL,
-  `ag_judul` varchar(100) NOT NULL,
-  `ag_konten` text NOT NULL,
-  `ag_tipe` enum('agenda','pengumuman') NOT NULL,
-  `ag_publish` enum('Y','N') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `berkas_docs`
 --
 
 CREATE TABLE `berkas_docs` (
   `berkas_id` int(10) NOT NULL,
-  `cs_nisn` varchar(10) NOT NULL,
+  `p_email` varchar(100) NOT NULL,
+  `berkas_nama` varchar(255) NOT NULL,
   `berkas_file` varchar(100) NOT NULL,
   `berkas_status` enum('verified','unverified') NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `calon_siswa`
+-- Dumping data for table `berkas_docs`
 --
 
-CREATE TABLE `calon_siswa` (
-  `cs_id` int(11) NOT NULL,
-  `cs_nisn` varchar(10) NOT NULL,
-  `cs_nis` varchar(12) NOT NULL,
-  `cs_nama_lengkap` varchar(100) NOT NULL,
-  `cs_tmpt_lahir` varchar(100) NOT NULL,
-  `cs_tgl_lahir` date NOT NULL,
-  `cs_jkel` enum('L','P') NOT NULL,
-  `cs_agama` varchar(35) NOT NULL,
-  `cs_no_tlp` varchar(36) NOT NULL,
-  `cs_alamat_lengkap` text NOT NULL,
-  `cs_nama_ayah` varchar(100) NOT NULL,
-  `cs_nama_ibu` varchar(100) NOT NULL,
-  `cs_nama_wali` varchar(100) NOT NULL,
-  `cs_asal_sekolah` varchar(100) NOT NULL,
-  `cs_email` varchar(100) NOT NULL,
-  `berkas_id` int(10) NOT NULL DEFAULT '0',
-  `cs_status` enum('uncompleted','notpass_test','pass_test') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `berkas_docs` (`berkas_id`, `p_email`, `berkas_nama`, `berkas_file`, `berkas_status`) VALUES
+(1, 'dwi_ar@gmail.com', 'Resume dwi_ar@gmail.com', '236808_CV Sample.docx', 'verified');
 
 -- --------------------------------------------------------
 
@@ -91,8 +55,16 @@ CREATE TABLE `info_karir` (
   `k_title` varchar(100) NOT NULL,
   `k_slug` varchar(150) NOT NULL,
   `k_desc` text NOT NULL,
-  `k_requirements` text NOT NULL
+  `k_requirements` text NOT NULL,
+  `k_publish` enum('Y','N') NOT NULL DEFAULT 'Y'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `info_karir`
+--
+
+INSERT INTO `info_karir` (`k_id`, `skk_id`, `k_title`, `k_slug`, `k_desc`, `k_requirements`, `k_publish`) VALUES
+(1, 2, 'Officer Development Program - Khusus IT', 'officer-development-program-khusus-it', '<p style=\"-webkit-font-smoothing: antialiased; margin-bottom: 1em; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; vertical-align: baseline; color: rgb(104, 114, 119);\">This program prepares you for leadership positions across many levels in Mandiri. By joining the program, you will be trained by highly experienced bankers, professionals and leaders in various aspects of banking and leadership. The program starts off with intensive in-class education followed by on-the-job training and rotation across different parts of the Bank.</p><p style=\"-webkit-font-smoothing: antialiased; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-height: inherit; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; vertical-align: baseline; color: rgb(104, 114, 119); margin-bottom: 0px !important;\">In addition to this comprehensive training package, you will get to be coached by the bank’s top talent who will help you achieve your fullest potential and have a better understanding of your strengths. You will also have access to our top leaders and closely work with senior managers in projects that will develop your critical skills.</p>', '<ol style=\"-webkit-font-smoothing: antialiased; margin-right: 0px; margin-bottom: 0px; margin-left: 20px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 13px; line-height: inherit; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; vertical-align: baseline; list-style-position: initial; list-style-image: initial; color: rgb(80, 88, 92);\"><li style=\"-webkit-font-smoothing: antialiased; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Local/International graduates (S1) and postgraduates (S2) from relevant fields of studies</li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Grade Point Average<ol style=\"-webkit-font-smoothing: antialiased; margin-right: 0px; margin-left: 20px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; list-style-position: initial; list-style-image: initial;\"><li style=\"-webkit-font-smoothing: antialiased; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">Graduate (S1): a minimum of 3.00 or equivalent</li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">Postgraduate (S2): a minimum of 3.20 or equivalent</li></ol></li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Maximum age for selection:<ol style=\"-webkit-font-smoothing: antialiased; margin-right: 0px; margin-left: 20px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; list-style-position: initial; list-style-image: initial;\"><li style=\"-webkit-font-smoothing: antialiased; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">25 years old for Graduates (S1)</li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; vertical-align: baseline;\">27 years old for Postgraduates (S2)</li></ol></li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Fluent in English for both written and verbal communication</li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Unmarried</li><li style=\"-webkit-font-smoothing: antialiased; margin: 1em 0px 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: 14px; line-height: inherit; font-family: inherit; vertical-align: baseline; color: rgb(104, 114, 119);\">Willing to be relocated all over Indonesia</li></ol>', 'Y');
 
 -- --------------------------------------------------------
 
@@ -120,15 +92,50 @@ INSERT INTO `kategori_karir` (`kk_id`, `kk_title`, `kk_slug`, `kk_desc`, `kk_pic
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pelamar_kerja`
+--
+
+CREATE TABLE `pelamar_kerja` (
+  `p_id` int(11) NOT NULL,
+  `p_ktp` varchar(20) NOT NULL,
+  `p_npwp` varchar(20) NOT NULL,
+  `p_email` varchar(100) NOT NULL,
+  `p_nama_lengkap` varchar(255) NOT NULL,
+  `p_tmpt_lahir` varchar(100) NOT NULL,
+  `p_tgl_lahir` date NOT NULL,
+  `p_jkel` enum('L','P') NOT NULL,
+  `p_alamat` text NOT NULL,
+  `p_no_hp` varchar(36) NOT NULL,
+  `p_headline` text NOT NULL,
+  `k_id` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelamar_kerja`
+--
+
+INSERT INTO `pelamar_kerja` (`p_id`, `p_ktp`, `p_npwp`, `p_email`, `p_nama_lengkap`, `p_tmpt_lahir`, `p_tgl_lahir`, `p_jkel`, `p_alamat`, `p_no_hp`, `p_headline`, `k_id`) VALUES
+(1, '1101011310780010', '357691724502000', 'dwi_ar@gmail.com', 'Dwi Aryanto', 'Jakarta', '1990-12-07', 'L', 'Jakarta Pusat', '081289898766', 'I have very good command over C, HTML, CSS ,  Java,  and Dot NET.  I believe and am confident that my academic scores will be compensated  with good programming skills. I am looking for a position where I can work and also learn.', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registrasi`
 --
 
 CREATE TABLE `registrasi` (
   `reg_id` varchar(8) NOT NULL,
   `reg_date` date NOT NULL,
-  `cs_nisn` varchar(10) NOT NULL,
-  `reg_status` enum('process','pass','notpass') NOT NULL
+  `p_email` varchar(100) NOT NULL,
+  `reg_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1:process,2:file_verified,3:pass,4:not_pass'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `registrasi`
+--
+
+INSERT INTO `registrasi` (`reg_id`, `reg_date`, `p_email`, `reg_status`) VALUES
+('R1807001', '2018-07-01', 'dwi_ar@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -171,8 +178,8 @@ CREATE TABLE `sub_kategori_karir` (
 --
 
 INSERT INTO `sub_kategori_karir` (`skk_id`, `kk_id`, `skk_title`, `skk_slug`, `skk_desc`, `skk_publish`) VALUES
-(1, 1, 'Officer Development Program General', 'officer-development-program-general', '', 'N'),
-(2, 2, 'Officer Development Program Khusus IT', 'officer-development-program-khusus-it', '<p>Officer Development Program Khusus IT<br></p>', 'Y'),
+(1, 1, 'Officer Development Program General', 'officer-development-program-general', '<p>Officer Development Program General<br></p>', 'Y'),
+(2, 1, 'Officer Development Program Khusus IT', 'officer-development-program-khusus-it', '<p>Officer Development Program Khusus IT<br></p>', 'Y'),
 (3, 2, 'Risk Management Development Program', 'risk-management-development-program', '<p helvetica=\"\" neue\",=\"\" helvetica,=\"\" arial,=\"\" sans-serif;=\"\" vertical-align:=\"\" baseline;=\"\" color:=\"\" rgb(104,=\"\" 114,=\"\" 119);=\"\" background-color:=\"\" rgb(255,=\"\" 255,=\"\" 255);\"=\"\" style=\"margin-bottom: 1em; color: rgb(85, 85, 85); line-height: inherit; font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; padding: 0px; border: 0px; font-stretch: inherit;\">We are looking for new graduates from fields related to Risk Management to be able to work and build nation through Risk Management Development Program (RMDP)</p><p helvetica=\"\" neue\",=\"\" helvetica,=\"\" arial,=\"\" sans-serif;=\"\" vertical-align:=\"\" baseline;=\"\" color:=\"\" rgb(104,=\"\" 114,=\"\" 119);=\"\" background-color:=\"\" rgb(255,=\"\" 255,=\"\" 255);\"=\"\" style=\"margin-bottom: 1em; color: rgb(85, 85, 85); line-height: inherit; font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; padding: 0px; border: 0px; font-stretch: inherit;\">This program prepares you for leadership positions across many levels in Mandiri. By joining the program, you will be trained by highly experienced bankers, professionals and leaders in various aspects of banking and leadership. The program starts off with intensive in-class education followed by on-the-job training and rotation across different parts of the Bank.</p><p helvetica=\"\" neue\",=\"\" helvetica,=\"\" arial,=\"\" sans-serif;=\"\" vertical-align:=\"\" baseline;=\"\" color:=\"\" rgb(104,=\"\" 114,=\"\" 119);=\"\" background-color:=\"\" rgb(255,=\"\" 255,=\"\" 255);\"=\"\" style=\"margin-bottom: 1em; color: rgb(85, 85, 85); line-height: inherit; font-family: &quot;Open Sans&quot;, Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased; padding: 0px; border: 0px; font-stretch: inherit;\">By joining this program, you will be trained by highly experience bankers &amp; Risk Professional to be a professionals and leaders in various aspect of Risk Management and Leadership.</p>', 'Y'),
 (4, 3, 'Officer Development Program Programmer BPR Project', 'officer-development-program-programmer-bpr-project', '<p>Officer Development Program Programmer BPR Project<br></p>', 'Y');
 
@@ -217,30 +224,17 @@ CREATE TABLE `users_role` (
 INSERT INTO `users_role` (`role_id`, `role_name`) VALUES
 (1, 'administrator'),
 (2, 'staff'),
-(3, 'registrants');
+(3, 'applicants');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `agenda`
---
-ALTER TABLE `agenda`
-  ADD PRIMARY KEY (`ag_id`);
-
---
 -- Indexes for table `berkas_docs`
 --
 ALTER TABLE `berkas_docs`
   ADD PRIMARY KEY (`berkas_id`);
-
---
--- Indexes for table `calon_siswa`
---
-ALTER TABLE `calon_siswa`
-  ADD PRIMARY KEY (`cs_id`),
-  ADD UNIQUE KEY `cs_nisn` (`cs_nisn`);
 
 --
 -- Indexes for table `info_karir`
@@ -253,6 +247,13 @@ ALTER TABLE `info_karir`
 --
 ALTER TABLE `kategori_karir`
   ADD PRIMARY KEY (`kk_id`);
+
+--
+-- Indexes for table `pelamar_kerja`
+--
+ALTER TABLE `pelamar_kerja`
+  ADD PRIMARY KEY (`p_id`),
+  ADD UNIQUE KEY `p_email` (`p_email`);
 
 --
 -- Indexes for table `registrasi`
@@ -289,34 +290,28 @@ ALTER TABLE `users_role`
 --
 
 --
--- AUTO_INCREMENT for table `agenda`
---
-ALTER TABLE `agenda`
-  MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `berkas_docs`
 --
 ALTER TABLE `berkas_docs`
-  MODIFY `berkas_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `calon_siswa`
---
-ALTER TABLE `calon_siswa`
-  MODIFY `cs_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `berkas_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `info_karir`
 --
 ALTER TABLE `info_karir`
-  MODIFY `k_id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `k_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kategori_karir`
 --
 ALTER TABLE `kategori_karir`
   MODIFY `kk_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `pelamar_kerja`
+--
+ALTER TABLE `pelamar_kerja`
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `site_pages`
