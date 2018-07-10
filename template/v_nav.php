@@ -10,7 +10,7 @@
               <a class="nav-link" href="<?php echo $baseurl; ?>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Karir Mandiri</a>
+              <a class="nav-link" href="?page=selection-results">Hasil Seleksi</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Kontak Kami</a>

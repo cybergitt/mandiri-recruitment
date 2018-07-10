@@ -17,6 +17,7 @@
             'apply-job'=>'modules/karir/page_career.php',
             'apply-job-new'=>'modules/karir/page_career_new.php',
             'do_apply_career'=>'modules/karir/do_submit_career.php',
+            'selection-results'=>'modules/hasil-seleksi/page_seleksi.php',
             'home'=>'modules/home.php'
         );
 //    }else{
